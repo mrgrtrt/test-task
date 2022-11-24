@@ -30,8 +30,16 @@ jobs:
           name: build-reports
           path: build/reports/tests
           
-      - name: Run a one-line script
-        run: ls -a
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        id: download
+
+      - name: Publish to GH Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
         
       - name: Publish reports
         uses: peaceiris/actions-gh-pages@v3
