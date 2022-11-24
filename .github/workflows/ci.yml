@@ -39,7 +39,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ${{steps.download.outputs.download-path}}
         
       - name: Publish reports
         uses: peaceiris/actions-gh-pages@v3
