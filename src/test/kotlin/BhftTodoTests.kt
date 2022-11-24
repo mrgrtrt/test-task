@@ -3,19 +3,9 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.testcontainers.containers.GenericContainer
-import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
-import org.testcontainers.utility.DockerImageName
 
-@Testcontainers
-class BhftTodoTests {
 
-    private val todoSteps = TodoSteps()
-
-    @Container
-    private val app: GenericContainer<*> = GenericContainer(DockerImageName.parse("todo-app"))
-        .withExposedPorts(4242)
+class BhftTodoTests : TestBase() {
 
     @AfterEach
     fun deleteTodo() {

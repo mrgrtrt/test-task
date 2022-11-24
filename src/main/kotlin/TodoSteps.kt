@@ -1,17 +1,9 @@
-import ConfigKeys.API_HOST
-import ConfigUtils.PROPERTIES
 import io.restassured.RestAssured.given
 import io.restassured.builder.RequestSpecBuilder
-import io.restassured.http.ContentType
 import io.restassured.response.Response
+import io.restassured.specification.RequestSpecification
 
-class TodoSteps {
-
-    private var reqSpec = RequestSpecBuilder()
-        .setBaseUri(PROPERTIES[API_HOST])
-        .setContentType(ContentType.JSON)
-        .build()
-        .log().all()
+class TodoSteps(private val reqSpec: RequestSpecification) {
 
     fun deleteTodo(todoId: Long): Response {
         return given(reqSpec).auth().preemptive().basic("admin", "admin")
